@@ -70,6 +70,10 @@
         //border
         self.border = YES;
         
+        self.arrowHeight = FP_POPOVER_ARROW_HEIGHT;
+        self.arrowBase = FP_POPOVER_ARROW_BASE;
+        self.popoverRadios = FP_POPOVER_RADIUS;
+        
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.textColor = [UIColor whiteColor];
@@ -114,7 +118,7 @@
         _contentView.clipsToBounds = YES;
         self.clipsToBounds = YES;
         self.draw3dBorder = NO;
-        _contentView.layer.cornerRadius = FP_POPOVER_RADIUS;
+        _contentView.layer.cornerRadius = self.popoverRadios;
     }
 }
 
@@ -125,9 +129,9 @@
 {
     CGFloat w = self.bounds.size.width;
     CGFloat h = self.bounds.size.height;
-    CGFloat ah = FP_POPOVER_ARROW_HEIGHT; //is the height of the triangle of the arrow
-    CGFloat aw = FP_POPOVER_ARROW_BASE/2.0; //is the 1/2 of the base of the arrow
-    CGFloat radius = FP_POPOVER_RADIUS;
+    CGFloat ah = self.arrowHeight; //is the height of the triangle of the arrow
+    CGFloat aw = self.arrowBase/2.0; //is the 1/2 of the base of the arrow
+    CGFloat radius = self.popoverRadios;
     CGFloat b = borderWidth;
     
     //NO BORDER
@@ -493,11 +497,11 @@
 
     else if(_arrowDirection == FPPopoverArrowDirectionLeft)
     {
-        contentRect.origin = CGPointMake(10 + FP_POPOVER_ARROW_HEIGHT, 40);        
+        contentRect.origin = CGPointMake(10 + self.arrowHeight, 40);        
         contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-50);
         _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20); 
 		if (self.title==nil || self.title.length==0) {
-			contentRect.origin = CGPointMake(10+ FP_POPOVER_ARROW_HEIGHT, 10);
+			contentRect.origin = CGPointMake(10+ self.arrowHeight, 10);
 			contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-20);
 		}
     }
